@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: PROFESSOR_SERVICE
+        uri: lb://professor_service
+        predicates:
+        - Path=/getallprofessors/**
+      - id: STUDENT_SERVICE
+        uri: lb://student_service
+        predicates:
+        - Path=/getallstudents/**
+  application:
+    name: ApiGatewayDiscovery_service
+               
+
+server:
+  port: 8081
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8767/eureka/
+      
+
